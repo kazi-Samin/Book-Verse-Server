@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { getAuth } from "../config/auth";
 
-export const requireAdmin = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const requireAdmin = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const auth = await getAuth();
     const { fromNodeHeaders } = await import("better-auth/node");
