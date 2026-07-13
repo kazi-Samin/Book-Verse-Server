@@ -12,6 +12,14 @@ import rateLimit from "express-rate-limit";
 import bookRoutes from "./features/books/book.route";
 import dashboardRoutes from "./features/dashboard/dashboard.route";
 
+// Trick Vercel's Node File Trace into bundling better-auth
+if (process.env.NEVER_TRUE === "true") {
+  require("better-auth");
+  require("better-auth/node");
+  require("better-auth/plugins");
+  require("better-auth/adapters/mongodb");
+}
+
 const app = express();
 
 // Security and utility middlewares
