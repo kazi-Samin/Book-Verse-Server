@@ -60,12 +60,14 @@ app.use("/api/auth", async (req, res, next) => {
 
 import userRoutes from "./features/user/user.route";
 import orderRoutes from "./features/orders/order.route";
+import paymentRoutes from "./features/payments/stripe.route";
 
 // Feature Routes
 app.use("/api/books", bookRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/payments", paymentRoutes);
 
 // Health check route
 app.get("/", (req, res) => {
