@@ -60,7 +60,7 @@ const OrderSchema = new Schema<IOrder>({
   timestamps: true
 });
 
-OrderSchema.pre('validate', function(next) {
+OrderSchema.pre('validate', function(next: any) {
   if (!this.orderNumber) {
     const date = new Date();
     const year = date.getFullYear().toString().substr(-2);
