@@ -53,10 +53,12 @@ export const getAuth = async () => {
     },
     advanced: {
       cookiePrefix: "bookverse",
+      crossSubDomainCookies: {
+        enabled: false,
+      },
       defaultCookieAttributes: {
         sameSite: "none",
         secure: true,
-        domain: new URL(frontendUrl).hostname,
       }
     },
   });
