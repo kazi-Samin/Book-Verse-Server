@@ -47,8 +47,9 @@ export const getAuth = async () => {
     },
     advanced: {
       cookiePrefix: "bookverse",
-      crossSubDomainCookies: {
-        enabled: env.NODE_ENV === "production",
+      defaultCookieAttributes: {
+        sameSite: "none",
+        secure: true,
       }
     },
   });
