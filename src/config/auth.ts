@@ -1,4 +1,5 @@
 import { betterAuth } from "better-auth";
+import { admin } from "better-auth/plugins";
 import { MongoClient } from "mongodb";
 import { env } from "./env";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
@@ -10,6 +11,7 @@ export const auth = betterAuth({
   database: mongodbAdapter(db),
   baseURL: env.BETTER_AUTH_URL,
   trustedOrigins: [env.FRONTEND_URL, "http://localhost:3000"],
+  plugins: [admin()],
   emailAndPassword: {
     enabled: true,
   },
