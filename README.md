@@ -1,57 +1,24 @@
-# BookVerse Backend
+# BookVerse API - Backend Server
 
-This is the Express.js & TypeScript backend for the BookVerse application.
+This is the robust backend server that powers **BookVerse**, a premium digital library and bookstore application. It provides all the necessary RESTful APIs to handle authentication, book management, user profiles, order processing, and secure payments.
 
-## Tech Stack
-- Node.js
-- Express.js
-- TypeScript
-- MongoDB & Mongoose
-- Better Auth (MongoDB Adapter)
-- Zod (Validation)
-- Helmet, Cors, Compression, Rate Limit
+## Live Website
+🌍 **[Visit BookVerse Live](https://book-verse-lyart.vercel.app/)**
 
-## Setup Instructions
+## ✨ Core Backend Features
 
-1. **Install Dependencies**
-   ```bash
-   npm install
-   ```
+- **Secure Authentication:** Implements `better-auth` for industry-standard session management, email verifications, and seamless Google OAuth integration.
+- **RESTful API Architecture:** Clean, feature-based folder structure (e.g., `/books`, `/users`, `/orders`, `/payments`) for high maintainability.
+- **MongoDB Integration:** Robust data modeling using Mongoose, handling complex schemas for Users, Books, Orders, Wishlists, and Addresses.
+- **Stripe Payments Integration:** A dedicated payment endpoint that generates secure Stripe Payment Intents for frictionless checkout on the frontend.
+- **Role-Based Access Control:** Secure routes ensuring that only administrators can add, update, or delete books, while users can securely manage their own profiles and orders.
 
-2. **Environment Variables**
-   Create a `.env` file in the root of the server folder:
-   ```env
-   PORT=5000
-   NODE_ENV=development
-   MONGO_URI=mongodb://localhost:27017/bookverse
-   BETTER_AUTH_SECRET=super_secret_better_auth_key_replace_in_prod
-   BETTER_AUTH_URL=http://localhost:5000
-   FRONTEND_URL=http://localhost:3000
-   
-   # Optional: Google OAuth
-   # GOOGLE_CLIENT_ID=your_client_id
-   # GOOGLE_CLIENT_SECRET=your_client_secret
-   ```
+## 🚀 Tech Stack
+- **Runtime:** Node.js
+- **Framework:** Express.js (TypeScript)
+- **Database:** MongoDB (Mongoose)
+- **Authentication:** Better-Auth
+- **Payment Processing:** Stripe Node SDK
 
-3. **Running the Server**
-   ```bash
-   # Development mode with nodemon
-   npm run dev
-   
-   # Production build
-   npm run build
-   npm start
-   ```
-
-## Folder Structure
-- `src/config/`: Configuration for env variables, db, and better-auth.
-- `src/features/`: Feature-based modules containing models, repositories, services, controllers, and routes.
-- `src/middlewares/`: Express middlewares for security and auth.
-- `src/types/`: Global TS types.
-- `src/server.ts`: Entry point.
-- `src/app.ts`: Express setup.
-
-## Deployment
-1. Ensure all `devDependencies` are skipped or build output is generated first (`npm run build`).
-2. Provide a production MongoDB instance (e.g., MongoDB Atlas) in `MONGO_URI`.
-3. Start the application via `node dist/server.js`.
+---
+*Built with ❤️ to power the BookVerse ecosystem.*
