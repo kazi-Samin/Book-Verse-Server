@@ -52,6 +52,11 @@ app.use("/api/auth", async (req, res, next) => {
 app.use("/api/books", bookRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
+// Health check route
+app.get("/", (req, res) => {
+  res.status(200).json({ success: true, message: "Book-Verse API is running perfectly!" });
+});
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({ success: false, message: "Route not found", data: null });
