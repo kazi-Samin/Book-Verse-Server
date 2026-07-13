@@ -38,7 +38,7 @@ const limiter = rateLimit({
 app.use("/api", limiter);
 
 // Better Auth Route
-app.all("/api/auth/*", toNodeHandler(auth));
+app.use("/api/auth", toNodeHandler(auth));
 
 // Feature Routes
 app.use("/api/books", bookRoutes);
