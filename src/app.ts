@@ -54,7 +54,30 @@ app.use("/api/dashboard", dashboardRoutes);
 
 // Health check route
 app.get("/", (req, res) => {
-  res.status(200).json({ success: true, message: "Book-Verse API is running perfectly!" });
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Backend Status</title>
+      <style>
+        body {
+          background-color: white;
+          color: black;
+          font-family: sans-serif;
+          font-size: 14px;
+          margin: 0;
+          padding: 10px;
+          text-align: left;
+        }
+      </style>
+    </head>
+    <body>
+      backend connected successfully
+    </body>
+    </html>
+  `);
 });
 
 // 404 handler
