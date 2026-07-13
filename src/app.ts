@@ -22,11 +22,13 @@ if (process.env.NEVER_TRUE === "true") {
 
 const app = express();
 
+const frontendUrl = env.FRONTEND_URL.replace(/\/$/, "");
+
 // Security and utility middlewares
 app.use(helmet());
 app.use(
   cors({
-    origin: env.FRONTEND_URL,
+    origin: frontendUrl,
     credentials: true, // required for Better Auth cookies
   })
 );
