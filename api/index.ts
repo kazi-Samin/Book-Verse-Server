@@ -4,4 +4,4 @@ import { connectDB } from "../src/config/db";
 // Ensure database connects in serverless environment
 connectDB().catch(console.error);
 
-export default app;
+module.exports = app;
