@@ -6,12 +6,16 @@ const db = client.db();
 
 let authInstance: any = null;
 
+const asyncImport = async (moduleName: string) => {
+  return await new Function(`return import('${moduleName}')`)();
+};
+
 export const getAuth = async () => {
   if (authInstance) return authInstance;
 
-  const { betterAuth } = await import("better-auth");
-  const { admin } = await import("better-auth/plugins");
-  const { mongodbAdapter } = await import("better-auth/adapters/mongodb");
+  const { betterAuth } = await asyncImport("better-auth");
+  const { admin } = await asyncImport("better-auth/plugins");
+  const { mongodbAdapter } = await asyncImport("better-auth/adapters/mongodb");
 
   authInstance = betterAuth({
     database: mongodbAdapter(db),

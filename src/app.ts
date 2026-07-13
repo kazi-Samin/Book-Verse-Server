@@ -39,12 +39,12 @@ app.use("/api", limiter);
 // Better Auth Route
 app.use("/api/auth", async (req, res, next) => {
   try {
-    const { toNodeHandler } = await import("better-auth/node");
+    const { toNodeHandler } = await new Function("return import('better-auth/node')")();
     const auth = await getAuth();
     const handler = toNodeHandler(auth);
     return handler(req, res);
-  } catch (err) {
-    next(err);
+  } catch (err: any) {
+    res.status(500).json({ success: false, message: err.message, data: null });
   }
 });
 

@@ -4,7 +4,7 @@ import { getAuth } from "../config/auth";
 export const requireAdmin = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const auth = await getAuth();
-    const { fromNodeHeaders } = await import("better-auth/node");
+    const { fromNodeHeaders } = await new Function("return import('better-auth/node')")();
     const session = await auth.api.getSession({
       headers: fromNodeHeaders(req.headers),
     });
