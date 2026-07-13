@@ -50,6 +50,7 @@ export const getAuth = async () => {
       defaultCookieAttributes: {
         sameSite: "none",
         secure: true,
+        domain: new URL(frontendUrl).hostname,
       }
     },
   });
