@@ -9,6 +9,7 @@ const db = client.db(); // Uses the database specified in the URI
 export const auth = betterAuth({
   database: mongodbAdapter(db),
   baseURL: env.BETTER_AUTH_URL,
+  trustedOrigins: [env.FRONTEND_URL, "http://localhost:3000"],
   emailAndPassword: {
     enabled: true,
   },
