@@ -4,8 +4,7 @@ import helmet from "helmet";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
-import { toNodeHandler } from "better-auth/node";
-import { auth } from "./config/auth";
+import { getAuth } from "./config/auth";
 import { env } from "./config/env";
 import rateLimit from "express-rate-limit";
 
@@ -38,7 +37,16 @@ const limiter = rateLimit({
 app.use("/api", limiter);
 
 // Better Auth Route
-app.use("/api/auth", toNodeHandler(auth));
+app.use("/api/auth", async (req, res, next) => {
+  try {
+    const { toNodeHandler } = await import("better-auth/node");
+    const auth = await getAuth();
+    const handler = toNodeHandler(auth);
+    return handler(req, res);
+  } catch (err) {
+    next(err);
+  }
+});
 
 // Feature Routes
 app.use("/api/books", bookRoutes);
