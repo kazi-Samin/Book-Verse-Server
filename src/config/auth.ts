@@ -11,7 +11,10 @@ export const auth = betterAuth({
   database: mongodbAdapter(db),
   baseURL: env.BETTER_AUTH_URL,
   trustedOrigins: [env.FRONTEND_URL, "http://localhost:3000"],
-  plugins: [admin()],
+  plugins: [admin({
+    defaultRole: "user",
+    adminUsers: ["kazisamin0173@gmail.com"]
+  })],
   emailAndPassword: {
     enabled: true,
   },
