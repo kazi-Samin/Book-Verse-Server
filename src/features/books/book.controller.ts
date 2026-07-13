@@ -29,7 +29,7 @@ export const getBooks = async (req: Request, res: Response) => {
 
 export const getBookById = async (req: Request, res: Response) => {
   try {
-    const book = await bookService.getBookById(req.params.id);
+    const book = await bookService.getBookById(req.params.id as string);
     const response: ApiResponse<any> = { success: true, message: "Book found", data: book };
     res.json(response);
   } catch (error: any) {
@@ -54,7 +54,7 @@ export const updateBook = async (req: Request, res: Response) => {
   try {
     const data = updateBookSchema.parse(req.body);
     const userId = (req as any).user.id;
-    const book = await bookService.updateBook(req.params.id, data, userId);
+    const book = await bookService.updateBook(req.params.id as string, data, userId);
     
     const response: ApiResponse<any> = { success: true, message: "Book updated", data: book };
     res.json(response);
@@ -66,7 +66,7 @@ export const updateBook = async (req: Request, res: Response) => {
 export const deleteBook = async (req: Request, res: Response) => {
   try {
     const userId = (req as any).user.id;
-    await bookService.deleteBook(req.params.id, userId);
+    await bookService.deleteBook(req.params.id as string, userId);
     
     const response: ApiResponse<null> = { success: true, message: "Book deleted", data: null };
     res.json(response);
