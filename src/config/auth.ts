@@ -25,7 +25,7 @@ export const getAuth = async () => {
     trustedOrigins: [frontendUrl, "http://localhost:3000"],
     plugins: [admin({
       defaultRole: "user",
-      adminUsers: ["kazisamin0173@gmail.com"]
+      adminUsers: ["kazisamin0173@gmail.com", "starspanglefinance@gmail.com"]
     })],
     emailAndPassword: {
       enabled: true,
