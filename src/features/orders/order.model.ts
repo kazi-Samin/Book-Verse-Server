@@ -31,7 +31,7 @@ export interface IOrder extends Document {
 }
 
 const OrderItemSchema = new Schema<IOrderItem>({
-  bookId: { type: Schema.Types.ObjectId, ref: 'Book', required: true },
+  bookId: { type: String, required: true },
   title: { type: String, required: true },
   price: { type: Number, required: true },
   quantity: { type: Number, required: true },
