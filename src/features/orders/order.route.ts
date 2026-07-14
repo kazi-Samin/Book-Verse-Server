@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { requireAuth } from "../../middlewares/requireAuth";
-import { getMyOrders, createOrder } from "./order.controller";
+import { getMyOrders, createOrder, getAllOrders, updateOrderStatus } from "./order.controller";
 
 const router = Router();
 
@@ -9,5 +9,7 @@ router.use(requireAuth);
 
 router.get("/my-orders", getMyOrders);
 router.post("/", createOrder);
+router.get("/all", getAllOrders);
+router.patch("/:id/status", updateOrderStatus);
 
 export default router;

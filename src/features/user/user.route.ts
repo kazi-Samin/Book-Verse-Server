@@ -6,13 +6,17 @@ import {
   removeFromWishlist,
   getAddresses,
   addAddress,
-  deleteAddress
+  deleteAddress,
+  getAllUsers
 } from "./user.controller";
 
 const router = Router();
 
 // All user routes require authentication
 router.use(requireAuth);
+
+// Admin Routes
+router.get("/all", getAllUsers);
 
 // Wishlist Routes
 router.get("/wishlist", getWishlist);

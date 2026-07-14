@@ -1,18 +1,23 @@
 import { Request, Response } from "express";
 import { Book } from "../books/book.model";
 import { ApiResponse } from "../../types";
+import { OrderModel } from "../orders/order.model";
+import mongoose from "mongoose";
 
 export const getDashboardStats = async (req: Request, res: Response) => {
   try {
     const totalBooks = await Book.countDocuments();
-    // Assuming simple stats
+    const totalOrders = await OrderModel.countDocuments();
+    // better-auth creates users in 'user' collection
+    const totalUsers = await mongoose.connection.db?.collection('user').countDocuments() || 0;
+    
     const response: ApiResponse<any> = {
       success: true,
       message: "Dashboard stats",
       data: {
         totalBooks,
-        activeReaders: 50000,
-        authorsJoined: 150,
+        totalOrders,
+        totalUsers,
       }
     };
     res.json(response);

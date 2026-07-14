@@ -3,6 +3,26 @@ import { WishlistModel } from "./wishlist.model";
 import { AddressModel } from "./address.model";
 
 // --- WISHLIST ---
+import mongoose from "mongoose";
+
+export const getAllUsers = async (req: Request, res: Response) => {
+  try {
+    const user = (req as any).user;
+    if (!user || (user.role !== 'admin' && user.email !== 'kazisamin0173@gmail.com')) {
+      return res.status(403).json({ success: false, message: "Forbidden", data: null });
+    }
+
+    const users = await mongoose.connection.db?.collection('user').find({}).toArray();
+    
+    res.status(200).json({
+      success: true,
+      message: "All users retrieved successfully",
+      data: users
+    });
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message, data: null });
+  }
+};
 
 export const getWishlist = async (req: Request, res: Response) => {
   try {
