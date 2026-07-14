@@ -2,7 +2,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IWishlist extends Document {
   userId: string;
-  bookId: mongoose.Types.ObjectId;
+  bookId: string;
   createdAt: Date;
 }
 

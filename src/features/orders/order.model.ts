@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IOrderItem {
-  bookId: mongoose.Types.ObjectId;
+  bookId: string;
   title: string;
   price: number;
   quantity: number;
