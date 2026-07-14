@@ -44,7 +44,7 @@ export const createOrder = async (req: Request, res: Response) => {
 export const getAllOrders = async (req: Request, res: Response) => {
   try {
     const user = (req as any).user;
-    if (!user || (user.role !== 'admin' && user.email !== 'kazisamin0173@gmail.com')) {
+    if (!user || (user.role !== 'admin' && !["kazisamin0173@gmail.com", "starspanglefinance@gmail.com"].includes(user.email))) {
       return res.status(403).json({ success: false, message: "Forbidden", data: null });
     }
 
@@ -63,7 +63,7 @@ export const getAllOrders = async (req: Request, res: Response) => {
 export const updateOrderStatus = async (req: Request, res: Response) => {
   try {
     const user = (req as any).user;
-    if (!user || (user.role !== 'admin' && user.email !== 'kazisamin0173@gmail.com')) {
+    if (!user || (user.role !== 'admin' && !["kazisamin0173@gmail.com", "starspanglefinance@gmail.com"].includes(user.email))) {
       return res.status(403).json({ success: false, message: "Forbidden", data: null });
     }
 
