@@ -14,7 +14,7 @@ export const getAuth = async () => {
   if (authInstance) return authInstance;
 
   const { betterAuth } = await asyncImport("better-auth");
-  const { admin } = await asyncImport("better-auth/plugins");
+  const { admin, jwt } = await asyncImport("better-auth/plugins");
   const { mongodbAdapter } = await asyncImport("better-auth/adapters/mongodb");
 
   const frontendUrl = env.FRONTEND_URL.replace(/\/$/, "");
@@ -23,10 +23,13 @@ export const getAuth = async () => {
     database: mongodbAdapter(db),
     baseURL: env.BETTER_AUTH_URL,
     trustedOrigins: [frontendUrl, "http://localhost:3000"],
-    plugins: [admin({
-      defaultRole: "user",
-      adminUsers: ["kazisamin0173@gmail.com", "starspanglefinance@gmail.com"]
-    })],
+    plugins: [
+      admin({
+        defaultRole: "user",
+        adminUsers: ["kazisamin0173@gmail.com", "starspanglefinance@gmail.com"]
+      }),
+      jwt()
+    ],
     emailAndPassword: {
       enabled: true,
     },
