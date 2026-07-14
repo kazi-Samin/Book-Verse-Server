@@ -60,14 +60,14 @@ const OrderSchema = new Schema<IOrder>({
   timestamps: true
 });
 
-OrderSchema.pre('validate', function(next: any) {
+OrderSchema.pre('save', function() {
   if (!this.orderNumber) {
     const date = new Date();
     const year = date.getFullYear().toString().substr(-2);
     const randomNum = Math.floor(1000 + Math.random() * 9000);
     this.orderNumber = `ORD-${year}${randomNum}`;
   }
-  next();
 });
 
-export const OrderModel = mongoose.model<IOrder>('Order', OrderSchema);
+export const OrderModel = mongoose.models?.Order || mongoose.model<IOrder>('Order', OrderSchema);
+

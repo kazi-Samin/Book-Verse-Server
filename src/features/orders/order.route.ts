@@ -4,12 +4,9 @@ import { getMyOrders, createOrder, getAllOrders, updateOrderStatus } from "./ord
 
 const router = Router();
 
-// All order routes require authentication
-router.use(requireAuth);
-
-router.get("/my-orders", getMyOrders);
-router.post("/", createOrder);
-router.get("/all", getAllOrders);
-router.patch("/:id/status", updateOrderStatus);
+router.get("/my-orders", requireAuth, getMyOrders);
+router.post("/", requireAuth, createOrder);
+router.get("/all", requireAuth, getAllOrders);
+router.patch("/:id/status", requireAuth, updateOrderStatus);
 
 export default router;
